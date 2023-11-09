@@ -11,6 +11,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
@@ -47,7 +48,7 @@ public class User {
     @Size(groups = CreateUser.class, min= 2, max = 100)
     private String username;
 
-    @Column(name = "password",nullable = false)
+    @Column(name = "password", nullable = false)
     @NotNull (groups = {CreateUser.class, UpdateUser.class})
     @NotEmpty (groups = {CreateUser.class, UpdateUser.class})
     @Size(groups = {CreateUser.class,UpdateUser.class}, min =6, max = 35)
@@ -101,6 +102,7 @@ public class User {
         return this;
     }
 
+    @JsonIgnore
     public List<Task> getTasks() {
         return this.tasks;
     }
