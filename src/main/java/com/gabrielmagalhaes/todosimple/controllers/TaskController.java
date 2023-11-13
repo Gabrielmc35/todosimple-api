@@ -22,7 +22,7 @@ import com.gabrielmagalhaes.todosimple.models.Task;
 import com.gabrielmagalhaes.todosimple.services.TaskService;
 
 @RestController
-@RequestMapping
+@RequestMapping("/task")
 @Validated
 public class TaskController {
     
@@ -43,8 +43,8 @@ public class TaskController {
     @Validated
     public ResponseEntity<Void> create(@Valid @RequestBody Task obj) {
         this.taskService.create(obj);
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
-                .path("/{id}").buildAndExpand(obj.getId()).toUri();
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
+
         return ResponseEntity.created(uri).build();
     }
 
@@ -68,13 +68,13 @@ public class TaskController {
     }
 
 
-    @GetMapping("/user/{userId}")
+    /*@GetMapping("/user/{userId}")
     public ResponseEntity<List<Task>> findAllByUserId(@PathVariable Long userId)
     {
         
         List<Task> tasks = this.taskService.findAllByUserId(userId);
         return ResponseEntity.ok().body(tasks);
-    }
+    }*/
     
 }
 
