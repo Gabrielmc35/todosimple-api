@@ -1,5 +1,6 @@
 package com.gabrielmagalhaes.todosimple.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,6 +57,12 @@ public class TaskService {
         } catch (Exception e) {
             throw new RuntimeException("Nao é possivel excluir entidade pois há entndidades relacionadas a ele.");
         }
+    }
+
+    public List<Task> findAllByUserId(Long userId)
+    {
+        List<Task> tasks = this.taskRepository.findByUser_Id(userId);
+        return tasks;
     }
 
 }
