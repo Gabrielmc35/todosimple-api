@@ -24,16 +24,13 @@ import java.util.Objects;
 public class User {
 
     public interface CreateUser {
-    
 
-        
     }
 
     public interface UpdateUser {
 
-
     }
-    
+
     public static final String TABLE_NAME = "user";
 
     @Id
@@ -43,21 +40,19 @@ public class User {
 
     @JsonProperty(access = Access.WRITE_ONLY)
     @Column(name = "username", nullable = false, unique = true)
-    @NotNull (groups = CreateUser.class)
-    @NotEmpty (groups = CreateUser.class)
-    @Size(groups = CreateUser.class, min= 2, max = 100)
+    @NotNull(groups = CreateUser.class)
+    @NotEmpty(groups = CreateUser.class)
+    @Size(groups = CreateUser.class, min = 2, max = 100)
     private String username;
 
     @Column(name = "password", nullable = false)
-    @NotNull (groups = {CreateUser.class, UpdateUser.class})
-    @NotEmpty (groups = {CreateUser.class, UpdateUser.class})
-    @Size(groups = {CreateUser.class,UpdateUser.class}, min =6, max = 35)
+    @NotNull(groups = { CreateUser.class, UpdateUser.class })
+    @NotEmpty(groups = { CreateUser.class, UpdateUser.class })
+    @Size(groups = { CreateUser.class, UpdateUser.class }, min = 6, max = 35)
     private String password;
 
-
     @OneToMany(mappedBy = "user")
-    private List<Task> tasks = new ArrayList<Task> ();
-
+    private List<Task> tasks = new ArrayList<Task>();
 
     public User() {
     }
@@ -124,7 +119,8 @@ public class User {
             return false;
         }
         User user = (User) o;
-        return Objects.equals(id, user.id) && Objects.equals(username, user.username) && Objects.equals(password, user.password);
+        return Objects.equals(id, user.id) && Objects.equals(username, user.username)
+                && Objects.equals(password, user.password);
     }
 
     @Override
@@ -135,10 +131,10 @@ public class User {
     @Override
     public String toString() {
         return "{" +
-            " id='" + getId() + "'" +
-            ", username='" + getUsername() + "'" +
-            ", password='" + getPassword() + "'" +
-            "}";
+                " id='" + getId() + "'" +
+                ", username='" + getUsername() + "'" +
+                ", password='" + getPassword() + "'" +
+                "}";
     }
-   
+
 }
