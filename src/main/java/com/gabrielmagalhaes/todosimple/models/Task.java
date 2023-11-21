@@ -11,11 +11,22 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import java.util.Objects;
 
 @Entity
 @Table(name = Task.TABLE_NAME)
-
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+@EqualsAndHashCode
 public class Task {
 
     
@@ -39,78 +50,5 @@ public class Task {
 
     
 
-    public Task() {
-    }
-
-    public Task(Long id, User user, String description) {
-        this.id = id;
-        this.user = user;
-        this.description = description;
-    }
-
-    public Long getId() {
-        return this.id;
-    }
-
-    public void setId(Long  id) {
-        this.id = id;
-    }
-
-    public User getUser() {
-        return this.user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public String getDescription() {
-        return this.description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Task id(long id) {
-        setId(id);
-        return this;
-    }
-
-    public Task user(User user) {
-        setUser(user);
-        return this;
-    }
-
-    public Task description(String description) {
-        setDescription(description);
-        return this;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (o == this)
-            return true;
-        if (!(o instanceof Task)) {
-            return false;
-        }
-        Task task = (Task) o;
-        return id == task.id && Objects.equals(user, task.user) && Objects.equals(description, task.description);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, user, description);
-    }
-    //TALVEZ ALTERAR O HASHCODE E O EQUALS. CONFIRMAR.
-
-    @Override
-    public String toString() {
-        return "{" +
-            " id='" + getId() + "'" +
-            ", user='" + getUser() + "'" +
-            ", description='" + getDescription() + "'" +
-            "}";
-    }
-    
+   
 }
